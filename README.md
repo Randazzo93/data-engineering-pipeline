@@ -1,23 +1,92 @@
-# Remo Health Data Engineer Project Assessment
+# NPI Data Engineering Pipeline
 
-### Summary
+## Overview
+This repository contains a data engineering pipeline for processing and analyzing data from the NPI (National Provider Identifier) Registry. The pipeline is structured into multiple layers (Bronze, Silver, and Gold) to enable efficient data transformation and storage.
 
-This assessment consists of 3 phases. How you choose to solve and present the deliverables for these phases is completely up to you. Feel free to use any tooling you feel comfortable with, however, be prepared to explain your reasoning behind your choices! Most importantly, have fun! You'll notice the instructions are purposefully vague and sparse in some areas. This assessment is designed to facilitate a conversation about your experience and style of solutioning data-related problems!
+## Repository Structure
 
-### Phase 1: Data Pipeline
+```plaintext
+DATA-ENGINEERING-PIPELINE
+├── data_pipeline/
+│   ├── 0_bronze/
+│   │   ├── nppes_extract_json_columns.csv  # Raw extracted data
+│   ├── 1_silver/
+│   │   ├── nppes_parsed.sql  # SQL scripts for data parsing and transformation
+│   ├── 2_gold/
+│   │   ├── dimensions/
+│   │   │   ├── city_dimension.sql  # SQL script for city dimension table
+│   │   │   ├── state_dimension_flattened.csv  # Flattened state dimension data
+│   │   │   ├── state_dimension.sql  # SQL script for state dimension table
+│   │   │   ├── taxonomy_code_dimension.sql  # SQL script for taxonomy codes
+│   │   ├── facts/
+│   │   │   ├── state_npi_facts.csv  # Processed NPI facts data
+│   │   │   ├── state_npi_facts.sql  # SQL script for fact table
+│   │   ├── status/
+│   │   │   ├── insert_state_npi_daily_status.sql  # SQL script for daily status
+│   │   │   ├── state_npi_daily_status.csv  # Processed daily status data
+├── dimensionality.png  # Visualization of dimensional model
+├── discovery.ipynb  # Jupyter notebook for data exploration
+├── ERD.png  # Entity Relationship Diagram (ERD)
+├── npi_extract.ipynb  # Jupyter notebook for data extraction
+├── state_city.yml  # YAML configuration for state-city mappings
+├── tableau_days_since_last_etl_run_aging_bins.png  # Tableau visualization
+├── tableau_npi_lead_list_engagement_chart.png  # Tableau visualization
+├── tableau_npi_lead_list_engagement_trends.png  # Tableau visualization
+├── tableau_npi_lead_list_engagement_summary.png  # Tableau visualization
+├── .gitignore  # Ignore unnecessary files
+├── poetry.lock  # Dependencies lock file
+├── pyproject.toml  # Python project configuration
+├── README.md  # Documentation
+```
 
-Using publicly available data of your choosing, whether via a static dataset or API, build a data pipeline. It can be as simple or as complex as you choose. As previously mentioned, feel free to use any tooling at your disposal! At the minimum, the pipeline should focus on acquiring the data and shipping it to some destination for further utilization.
+## Data Pipeline Stages
 
-Keep in mind the following phases when considering the domain and dimensions of your data!
+### Bronze Layer
+- Raw data is extracted from the NPI Registry in JSON format.
+- Stored in CSV format (`nppes_extract_json_columns.csv`).
 
-### Phase 2: Fact & Dimension Table
+### Silver Layer
+- Data is parsed and cleaned using SQL transformations (`nppes_parsed.sql`).
 
-This phase is purposefully open-ended and the instructions very terse.
+### Gold Layer
+- Data is further transformed into dimensional and fact tables.
+- **Dimension tables:**
+  - City, State, and Taxonomy Code (`city_dimension.sql`, `state_dimension.sql`, etc.).
+- **Fact tables:**
+  - `state_npi_facts.sql`: Contains aggregated NPI data.
+  - `state_npi_daily_status.csv`: Tracks daily updates to NPI data.
 
-- Develop a fact table with your data.
-- Develop a dimension table with your data.
+## Visualization & Analysis
+- Jupyter notebooks (`discovery.ipynb`, `npi_extract.ipynb`) for exploratory data analysis.
+- Tableau visualizations (`tableau_npi_lead_list_engagement_chart.png`, etc.).
+- ERD (`ERD.png`) showing database schema relationships.
 
-### Phase 3: Sample Presentation Layer
+## Dependencies
+- **Python** (configured via `pyproject.toml` and `poetry.lock`)
+- **SQL** for data transformation
+- **Jupyter Notebooks** for data exploration
+- **Tableau** for visualization
 
-Now's your chance to get creative and showcase how you might present this data for insights and additional analysis. Feel free to use readily available tools for presenting your data.
+## Getting Started
+
+```sh
+# Clone the repository
+git clone <repository-url>
+cd DATA-ENGINEERING-PIPELINE
+
+# Install dependencies
+poetry install
+
+# Run data extraction
+jupyter notebook npi_extract.ipynb
+```
+
+4. Process data through SQL transformations.
+5. Load the final dataset into Tableau for visualization.
+
+## Contributors
+- [Your Name]
+
+## License
+This project is licensed under the MIT License.
 
