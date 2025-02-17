@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "remo-assessment"
+version = "1"
+description = ""
+authors = ["filustre23 <fidel.ilustre@yahoo.com>"]
+readme = "README.md"
+packages = [{ include = "remo_assessment" }]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+jupyter = "^1.1.1"
+lab = "^8.3"
+duckdb = "^1.1.3"
+pandas = "^2.1.0"
+aider = "^0.2.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
