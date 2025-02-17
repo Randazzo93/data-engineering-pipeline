@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "remo-assessment"
+name = "data-engineering-pipeline"
 version = "1"
 description = ""
-authors = ["filustre23 <fidel.ilustre@yahoo.com>"]
+authors = ["trandazzo93 <trandazzo93@gmail.com>"]
 readme = "README.md"
-packages = [{ include = "remo_assessment" }]
+packages = [{ include = "data-engineering-pipeline" }]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
