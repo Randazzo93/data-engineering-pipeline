@@ -85,8 +85,5 @@ jupyter notebook npi_extract.ipynb
 5. Load the final dataset into Tableau for visualization.
 
 ## Contributors
-- [Your Name]
-
-## License
-This project is licensed under the MIT License.
+- Thomas Randazzo
 
